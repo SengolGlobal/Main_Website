@@ -19,6 +19,12 @@
   "images": {
     "binding": "IMAGES"
   },
+  // Both hostnames serve the site. Cloudflare creates the DNS records and
+  // certificates for custom domains on deploy.
+  "routes": [
+    { "pattern": "sengolgroup.com", "custom_domain": true },
+    { "pattern": "www.sengolgroup.com", "custom_domain": true }
+  ],
   "observability": {
     "enabled": true
   }
