@@ -1,0 +1,252 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-navy-950: #061528;
+  --color-navy-900: #0a2240;
+  --color-navy-800: #0f2e55;
+  --color-navy-700: #1b3f72;
+  --color-navy-600: #275394;
+  --color-navy-500: #3a6bb3;
+  --color-navy-200: #c3d3ea;
+  --color-navy-100: #e3ebf6;
+  --color-navy-50: #f2f6fb;
+
+  --color-gold-700: #8f6200;
+  --color-gold-600: #c98d00;
+  --color-gold-500: #f2b416;
+  --color-gold-400: #f7c84a;
+  --color-gold-100: #fdf1cf;
+
+  --color-ink: #1d2733;
+  --color-muted: #4b5767;
+  --color-line: #e2e7ee;
+  --color-mist: #f4f6f9;
+
+  --font-display: var(--font-archivo), var(--font-cjk), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-dm-sans), var(--font-cjk), ui-sans-serif, system-ui, sans-serif;
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --shadow-card: 0 1px 2px rgb(10 34 64 / 0.06), 0 8px 24px -12px rgb(10 34 64 / 0.18);
+  --shadow-lift: 0 2px 4px rgb(10 34 64 / 0.06), 0 22px 44px -18px rgb(10 34 64 / 0.32);
+}
+
+/* ---------- Language-specific typography ---------- */
+:root {
+  --font-cjk: ui-sans-serif;
+}
+html:lang(ko) {
+  --font-cjk: 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', 'Nanum Gothic';
+}
+html:lang(ja) {
+  --font-cjk: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic UI', 'Yu Gothic', Meiryo, 'Noto Sans JP';
+}
+html:lang(zh-CN) {
+  --font-cjk: 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', 'Hiragino Sans GB', 'Source Han Sans SC';
+}
+html:lang(ar) {
+  --font-display: var(--font-plex-arabic), 'Segoe UI', Tahoma, sans-serif;
+  --font-sans: var(--font-plex-arabic), 'Segoe UI', Tahoma, sans-serif;
+}
+html:lang(ko) body {
+  word-break: keep-all;
+}
+body {
+  overflow-wrap: break-word;
+}
+/* Long compound words (e.g. German) hyphenate instead of overflowing small screens. */
+html:is(:lang(de), :lang(fr), :lang(it), :lang(es)) :is(h1, h2, h3, dt, dd, label, .hyphenate) {
+  hyphens: auto;
+}
+html:lang(ja) body,
+html:lang(zh-CN) body {
+  line-break: strict;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 6rem;
+  }
+  body {
+    @apply bg-white font-sans text-ink antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display text-navy-900;
+    font-variation-settings: 'wdth' 108;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+  html:lang(ar) :is(h1, h2, h3, h4),
+  html:lang(ko) :is(h1, h2, h3, h4),
+  html:lang(ja) :is(h1, h2, h3, h4),
+  html:lang(zh-CN) :is(h1, h2, h3, h4) {
+    letter-spacing: 0;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-gold-500);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  ::selection {
+    background: var(--color-gold-400);
+    color: var(--color-navy-950);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-semibold tracking-[0.18em] text-gold-700 uppercase;
+  }
+  .eyebrow::before {
+    content: '';
+    @apply h-px w-8 bg-gold-500;
+  }
+  .eyebrow-light {
+    @apply text-gold-400;
+  }
+  html:lang(ar) .eyebrow,
+  html:lang(ko) .eyebrow,
+  html:lang(ja) .eyebrow,
+  html:lang(zh-CN) .eyebrow {
+    letter-spacing: 0.04em;
+  }
+  .section {
+    @apply py-20 sm:py-24 lg:py-28;
+  }
+  .h2 {
+    @apply text-3xl leading-tight font-bold sm:text-4xl lg:text-[2.75rem];
+  }
+  .lead {
+    @apply text-lg leading-relaxed text-muted;
+  }
+  .btn {
+    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 text-[0.95rem] font-semibold transition duration-200 ease-out-soft select-none disabled:cursor-not-allowed disabled:opacity-60;
+  }
+  .btn-gold {
+    @apply bg-gold-500 text-navy-950 shadow-[0_8px_24px_-10px_rgb(242_180_22/0.7)] hover:bg-gold-400 hover:shadow-[0_12px_28px_-10px_rgb(242_180_22/0.8)];
+  }
+  .btn-navy {
+    @apply bg-navy-800 text-white hover:bg-navy-700;
+  }
+  .btn-ghost-light {
+    @apply border border-white/30 text-white backdrop-blur-sm hover:border-white/60 hover:bg-white/10;
+  }
+  .btn-outline {
+    @apply border border-navy-200 text-navy-800 hover:border-navy-700 hover:bg-navy-50;
+  }
+  .card {
+    @apply rounded-2xl border border-line bg-white shadow-card;
+  }
+  .link-arrow {
+    @apply inline-flex items-center gap-1.5 font-semibold text-navy-700 transition-colors hover:text-navy-900;
+  }
+  .prose-legal h2 {
+    @apply mt-10 mb-3 text-xl font-bold;
+  }
+  .prose-legal p {
+    @apply leading-relaxed text-muted;
+  }
+}
+
+/* ---------- Motion ---------- */
+/* Content is only hidden for reveal once JS is confirmed (html.js), so it never
+   stays invisible without scripts. */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.7s var(--ease-out-soft),
+    transform 0.7s var(--ease-out-soft);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes kenburns {
+  from {
+    transform: scale(1.08) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale(1.18) translate3d(-2%, -1%, 0);
+  }
+}
+.animate-kenburns {
+  animation: kenburns 28s ease-in-out infinite alternate;
+}
+
+@keyframes route-draw {
+  from {
+    stroke-dashoffset: var(--route-length, 200);
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes route-flow {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+.route-line {
+  stroke-dasharray: var(--route-length, 200);
+  animation: route-draw 2.2s var(--ease-out-soft) both;
+  animation-delay: var(--route-delay, 0ms);
+}
+/* Draw routes when their section scrolls into view, not on page load. */
+.js .reveal:not(.is-visible) .route-line {
+  animation-play-state: paused;
+}
+.route-flow {
+  stroke-dasharray: 1.4 4.6;
+  animation: route-flow 1.6s linear infinite;
+}
+.pulse-ring {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pulse-ring 2.4s ease-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+  }
+  .route-flow,
+  .pulse-ring {
+    animation: none !important;
+  }
+}
