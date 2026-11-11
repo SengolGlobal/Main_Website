@@ -519,7 +519,7 @@ const ko: Messages = {
   contact: {
     metaTitle: '문의하기',
     metaDescription:
-      '우타르프라데시주 가지아바드의 Sengol Global Logistics Pvt. Ltd.에 문의하세요. 화물·물류 문의는 +91 8448336307 또는 network@sengolgroup.com으로 연락 주십시오.',
+      '우타르프라데시주 가지아바드의 Sengol Global Logistics Pvt. Ltd.에 문의하세요. 화물·물류 문의는 +91 9540603266 또는 bdm@sengolgroup.com으로 연락 주십시오.',
     hero: {
       eyebrow: '문의하기',
       title: '귀사의 화물에 대해 이야기해 보세요',
@@ -550,6 +550,7 @@ const ko: Messages = {
     required: '필수',
     optional: '선택',
     requiredNote: '* 표시 항목은 필수입니다.',
+    privacyNote: '걱정하지 마세요. 고객님의 데이터는 저희가 안전하게 보호합니다.',
     sections: {
       contact: '고객 정보',
       shipment: '운송 정보',
@@ -603,6 +604,10 @@ const ko: Messages = {
       successTitle: '감사합니다. 문의가 전송되었습니다.',
       successText: '담당 팀이 내용을 검토한 후 이메일이나 전화로 연락드리겠습니다.',
       sendAnother: '다른 문의 보내기',
+      mailOpenedTitle: '거의 완료되었습니다 — 이메일 앱이 열렸습니다.',
+      mailOpenedText: '입력하신 내용이 모두 담긴 이메일이 이메일 앱에 준비되었습니다. 이제 그곳에서 보내기만 누르시면 됩니다. 앱이 열리지 않았다면 아래 버튼을 사용하거나 {email}로 직접 문의해 주세요.',
+      openMailAgain: '이메일 앱 다시 열기',
+      backToForm: '양식으로 돌아가기',
       notConfiguredTitle: '온라인 전송 기능은 아직 이용할 수 없습니다.',
       notConfiguredText: '문의가 전송되지 않았습니다. {email}로 이메일을 보내시거나 {phone}으로 전화해 주세요. 입력하신 내용은 양식에 그대로 남아 있습니다.',
       errorTitle: '문의를 전송하지 못했습니다.',
@@ -624,8 +629,8 @@ const ko: Messages = {
         { heading: '이용 목적', body: '이 정보는 문의에 답변하고, 견적을 준비하며, 요청하신 서비스에 관해 연락하는 목적으로만 사용합니다.' },
         { heading: '쿠키 및 저장', body: '이 웹사이트는 선택하신 언어를 기억하기 위한 기능성 쿠키 하나만 사용합니다. 광고 쿠키는 사용하지 않으며, 양식 입력 내용은 브라우저에 저장되지 않습니다.' },
         { heading: '제3자 제공', body: '견적 준비나 요청하신 서비스 수행에 필요한 경우 화물 정보를 물류 파트너와 공유할 수 있습니다. 개인정보를 판매하지 않습니다.' },
-        { heading: '보관 기간 및 권리', body: '문의 정보는 위 목적에 필요한 기간 또는 법령이 요구하는 기간 동안만 보관합니다. network@sengolgroup.com으로 이메일을 보내 정보의 열람, 정정 또는 삭제를 요청하실 수 있습니다.' },
-        { heading: '문의처', body: '개인정보 관련 문의는 network@sengolgroup.com 또는 +91 8448336307로 연락해 주세요.' },
+        { heading: '보관 기간 및 권리', body: '문의 정보는 위 목적에 필요한 기간 또는 법령이 요구하는 기간 동안만 보관합니다. bdm@sengolgroup.com으로 이메일을 보내 정보의 열람, 정정 또는 삭제를 요청하실 수 있습니다.' },
+        { heading: '문의처', body: '개인정보 관련 문의는 bdm@sengolgroup.com 또는 +91 9540603266로 연락해 주세요.' },
       ],
     },
     terms: {

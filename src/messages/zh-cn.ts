@@ -519,7 +519,7 @@ const zhCN: Messages = {
   contact: {
     metaTitle: '联系我们',
     metaDescription:
-      '联系位于北方邦加济阿巴德的 Sengol Global Logistics Pvt. Ltd.。货运与物流咨询请致电 +91 8448336307 或发送邮件至 network@sengolgroup.com。',
+      '联系位于北方邦加济阿巴德的 Sengol Global Logistics Pvt. Ltd.。货运与物流咨询请致电 +91 9540603266 或发送邮件至 bdm@sengolgroup.com。',
     hero: {
       eyebrow: '联系我们',
       title: '谈谈您的货物',
@@ -550,6 +550,7 @@ const zhCN: Messages = {
     required: '必填',
     optional: '选填',
     requiredNote: '标有 * 的字段为必填项。',
+    privacyNote: '请放心，您的数据在我们这里完全安全。',
     sections: {
       contact: '您的信息',
       shipment: '运输信息',
@@ -603,6 +604,10 @@ const zhCN: Messages = {
       successTitle: '谢谢，您的咨询已提交。',
       successText: '我们的团队将审核您的信息，并通过邮件或电话与您联系。',
       sendAnother: '再提交一条咨询',
+      mailOpenedTitle: '快完成了——您的邮件应用已打开。',
+      mailOpenedText: '您的询价内容已在邮件应用中填写完毕，只需在那里点击“发送”即可送达我们。如果邮件应用没有打开，请使用下方按钮，或直接发送邮件至 {email}。',
+      openMailAgain: '再次打开邮件应用',
+      backToForm: '返回表单',
       notConfiguredTitle: '在线提交功能暂不可用。',
       notConfiguredText: '您的咨询尚未发送。请发送邮件至 {email} 或致电 {phone}。您填写的内容仍保留在表单中。',
       errorTitle: '咨询未能发送。',
@@ -624,8 +629,8 @@ const zhCN: Messages = {
         { heading: '信息用途', body: '我们仅将这些信息用于回复您的咨询、准备报价以及就您所请求的服务与您沟通。' },
         { heading: 'Cookie 与存储', body: '本网站仅使用一个功能性 Cookie 来记住您选择的语言。我们不使用广告 Cookie。表单内容不会保存在您的浏览器中。' },
         { heading: '信息共享', body: '在准备报价或履行您所请求的服务所必需时，我们可能会与物流合作伙伴共享货物信息。我们不会出售个人信息。' },
-        { heading: '保存期限与您的权利', body: '我们仅在实现上述目的所需或法律要求的期限内保存咨询信息。您可以发送邮件至 network@sengolgroup.com，申请查阅、更正或删除您的信息。' },
-        { heading: '联系方式', body: '如有隐私相关问题，请联系 network@sengolgroup.com 或致电 +91 8448336307。' },
+        { heading: '保存期限与您的权利', body: '我们仅在实现上述目的所需或法律要求的期限内保存咨询信息。您可以发送邮件至 bdm@sengolgroup.com，申请查阅、更正或删除您的信息。' },
+        { heading: '联系方式', body: '如有隐私相关问题，请联系 bdm@sengolgroup.com 或致电 +91 9540603266。' },
       ],
     },
     terms: {

@@ -519,7 +519,7 @@ const es: Messages = {
   contact: {
     metaTitle: 'Contacto',
     metaDescription:
-      'Contacte con Sengol Global Logistics Pvt. Ltd. en Ghaziabad, Uttar Pradesh. Llame al +91 8448336307 o escriba a network@sengolgroup.com para consultas de carga y logística.',
+      'Contacte con Sengol Global Logistics Pvt. Ltd. en Ghaziabad, Uttar Pradesh. Llame al +91 9540603266 o escriba a bdm@sengolgroup.com para consultas de carga y logística.',
     hero: {
       eyebrow: 'Contacto',
       title: 'Hablemos de su carga',
@@ -550,6 +550,7 @@ const es: Messages = {
     required: 'Obligatorio',
     optional: 'opcional',
     requiredNote: 'Los campos marcados con * son obligatorios.',
+    privacyNote: 'No se preocupe: sus datos están completamente seguros con nosotros.',
     sections: {
       contact: 'Sus datos',
       shipment: 'Envío',
@@ -603,6 +604,10 @@ const es: Messages = {
       successTitle: 'Gracias: su consulta se ha enviado.',
       successText: 'Nuestro equipo revisará sus datos y se pondrá en contacto con usted por correo o teléfono.',
       sendAnother: 'Enviar otra consulta',
+      mailOpenedTitle: 'Casi listo: su aplicación de correo se ha abierto.',
+      mailOpenedText: 'Su consulta se ha preparado en su aplicación de correo con todos sus datos. Solo tiene que pulsar Enviar allí. Si no se abrió, use el botón de abajo o escríbanos directamente a {email}.',
+      openMailAgain: 'Abrir el correo de nuevo',
+      backToForm: 'Volver al formulario',
       notConfiguredTitle: 'El envío en línea aún no está disponible.',
       notConfiguredText: 'Su consulta NO se ha enviado. Escríbanos a {email} o llame al {phone}. Sus datos siguen en el formulario.',
       errorTitle: 'No hemos podido enviar su consulta.',
@@ -624,8 +629,8 @@ const es: Messages = {
         { heading: 'Cómo la usamos', body: 'Utilizamos esta información únicamente para responder a su consulta, preparar cotizaciones y comunicarnos con usted sobre los servicios solicitados.' },
         { heading: 'Cookies y almacenamiento', body: 'El sitio utiliza una única cookie funcional para recordar el idioma elegido. No usamos cookies publicitarias. Los datos de los formularios no se guardan en su navegador.' },
         { heading: 'Cesión de datos', body: 'Podemos compartir los datos del envío con socios logísticos cuando sea necesario para preparar una cotización o prestar los servicios solicitados. No vendemos información personal.' },
-        { heading: 'Conservación y derechos', body: 'Conservamos la información de las consultas solo el tiempo necesario para los fines indicados o el exigido por la ley. Puede solicitar el acceso, la rectificación o la supresión de sus datos escribiendo a network@sengolgroup.com.' },
-        { heading: 'Contacto', body: 'Para cuestiones de privacidad, escriba a network@sengolgroup.com o llame al +91 8448336307.' },
+        { heading: 'Conservación y derechos', body: 'Conservamos la información de las consultas solo el tiempo necesario para los fines indicados o el exigido por la ley. Puede solicitar el acceso, la rectificación o la supresión de sus datos escribiendo a bdm@sengolgroup.com.' },
+        { heading: 'Contacto', body: 'Para cuestiones de privacidad, escriba a bdm@sengolgroup.com o llame al +91 9540603266.' },
       ],
     },
     terms: {

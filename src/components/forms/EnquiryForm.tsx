@@ -1,9 +1,8 @@
-﻿'use client';
+'use client';
 
 import { useEffect, useId, useRef, useState, type ReactNode } from 'react';
-import { useLocale, useTranslations } from 'next-intl';
-import { AlertTriangle, CheckCircle2, ChevronDown, Info, Loader2, Send } from 'lucide-react';
-import { Link } from '@/i18n/navigation';
+import { useTranslations } from 'next-intl';
+import { AlertTriangle, CheckCircle2, ChevronDown, Send, ShieldCheck } from 'lucide-react';
 import { company } from '@/data/site';
 import {
   directions,
@@ -21,19 +20,17 @@ import {
 } from '@/lib/enquiry';
 import { registerDraftCollector, takeDraft } from './draftStore';
 
-type Status = 'idle' | 'submitting' | 'sent' | 'not_configured' | 'error' | 'rate_limited' | 'invalid';
+type Status = 'idle' | 'mail' | 'invalid';
 type Props = { kind: EnquiryKind; defaultMode?: string };
 
 const shipmentFields: EnquiryField[] = ['direction', 'origin', 'destination', 'mode', 'cargo', 'weight', 'date'];
 
 export function EnquiryForm({ kind, defaultMode }: Props) {
   const t = useTranslations('form');
-  const locale = useLocale();
   const formId = `enquiry-${kind}`;
   const uid = useId();
   const summaryRef = useRef<HTMLDivElement>(null);
   const statusRef = useRef<HTMLDivElement>(null);
-  const startedAt = useRef(Date.now());
 
   const [values, setValues] = useState<EnquiryValues>(() => {
     const draft = takeDraft(formId) as Partial<EnquiryValues> | undefined;
@@ -75,9 +72,34 @@ export function EnquiryForm({ kind, defaultMode }: Props) {
     setErrors((e) => ({ ...e, [field]: fieldError }));
   };
 
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  /** Builds a mailto: draft addressed to our team with every submitted detail. */
+  const buildMailto = () => {
+    const lines: string[] = [];
+    const add = (label: string, value: string) => {
+      if (value) lines.push(`${label}: ${value}`);
+    };
+    add(t('fields.name'), values.name);
+    add(t('fields.company'), values.company);
+    add(t('fields.email'), values.email);
+    if (values.phone) add(t('fields.phone'), `${values.phoneCode} ${values.phone}`.trim());
+    const direction = directions.find((d) => d === values.direction);
+    if (direction) add(t('fields.direction'), t(`options.direction.${direction}`));
+    const mode = modes.find((m) => m === values.mode);
+    if (mode) add(t('fields.mode'), t(`options.mode.${mode}`));
+    add(t('fields.origin'), values.origin);
+    add(t('fields.destination'), values.destination);
+    add(t('fields.cargo'), values.cargo);
+    add(t('fields.weight'), values.weight);
+    add(t('fields.date'), values.date);
+    add(t('fields.message'), values.message);
+    const subject = `${kind === 'quote' ? t('submitQuote') : t('submit')}: ${values.name}${values.company ? ` (${values.company})` : ''}`
+      .replace(/[\r\n]+/g, ' ')
+      .slice(0, 180);
+    return `mailto:${company.emails[0]}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join('\n'))}`;
+  };
+
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (status === 'submitting') return;
     const found = validate(kind, values, minDate);
     setErrors(found);
     if (Object.keys(found).length) {
@@ -86,50 +108,14 @@ export function EnquiryForm({ kind, defaultMode }: Props) {
       requestAnimationFrame(() => summaryRef.current?.focus());
       return;
     }
-    setStatus('submitting');
+    // Spam trap: bots fill the hidden field; real visitors never see it.
     const honeypot = (e.currentTarget.elements.namedItem('website') as HTMLInputElement | null)?.value ?? '';
-    try {
-      const res = await fetch('/api/enquiry', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ kind, locale, values, website: honeypot, startedAt: startedAt.current }),
-      });
-      const data = (await res.json().catch(() => ({}))) as { code?: string; errors?: EnquiryErrors };
-      if (res.ok && data.code === 'sent') {
-        setStatus('sent');
-        setValues({ ...emptyValues });
-        setTouched({});
-      } else if (data.code === 'not_configured') setStatus('not_configured');
-      else if (data.code === 'rate_limited') setStatus('rate_limited');
-      else if (data.code === 'invalid' && data.errors) {
-        setErrors(data.errors);
-        setStatus('invalid');
-      } else setStatus('error');
-    } catch {
-      setStatus('error');
-    }
-    requestAnimationFrame(() => (statusRef.current ?? summaryRef.current)?.focus());
+    if (honeypot) return;
+    // Deliver via the visitor's own email app: a pre-filled draft opens, addressed to our team.
+    window.location.href = buildMailto();
+    setStatus('mail');
+    requestAnimationFrame(() => statusRef.current?.focus());
   };
-
-  if (status === 'sent') {
-    return (
-      <div ref={statusRef} tabIndex={-1} role="status" className="rounded-2xl border border-emerald-200 bg-emerald-50 p-8 text-center outline-none">
-        <CheckCircle2 className="mx-auto size-12 text-emerald-600" aria-hidden />
-        <h2 className="mt-4 text-2xl font-bold">{t('status.successTitle')}</h2>
-        <p className="mt-3 text-muted">{t('status.successText')}</p>
-        <button
-          type="button"
-          className="btn btn-outline mt-6"
-          onClick={() => {
-            startedAt.current = Date.now();
-            setStatus('idle');
-          }}
-        >
-          {t('status.sendAnother')}
-        </button>
-      </div>
-    );
-  }
 
   const errorIds = Object.entries(errors).filter(([, v]) => v) as [EnquiryField, ErrorCode][];
   const id = (field: string) => `${uid}-${field}`;
@@ -170,21 +156,6 @@ export function EnquiryForm({ kind, defaultMode }: Props) {
       'w-full rounded-xl border bg-white px-4 py-3 text-base text-ink shadow-sm transition-colors placeholder:text-slate-400 focus:border-navy-600 focus:ring-4 focus:ring-navy-100 focus:outline-none aria-[invalid=true]:border-red-600 aria-[invalid=true]:ring-red-100 border-line',
   });
 
-  const statusBox = (tone: 'warn' | 'error', title: string, text: string) => (
-    <div
-      ref={statusRef}
-      tabIndex={-1}
-      role="alert"
-      className={`flex gap-3 rounded-xl border p-4 outline-none ${tone === 'warn' ? 'border-amber-300 bg-amber-50' : 'border-red-200 bg-red-50'}`}
-    >
-      {tone === 'warn' ? <Info className="mt-0.5 size-5 shrink-0 text-amber-700" aria-hidden /> : <AlertTriangle className="mt-0.5 size-5 shrink-0 text-red-700" aria-hidden />}
-      <div>
-        <p className="font-semibold text-navy-900">{title}</p>
-        <p className="mt-1 text-sm text-ink">{text}</p>
-      </div>
-    </div>
-  );
-
   const shipment = (
     <div className="grid gap-5 sm:grid-cols-2">
       {field(
@@ -220,7 +191,7 @@ export function EnquiryForm({ kind, defaultMode }: Props) {
   const sectionTitle = 'text-lg font-bold text-navy-900';
 
   return (
-    <form noValidate onSubmit={onSubmit} className="flex flex-col gap-8" aria-busy={status === 'submitting'}>
+    <form noValidate onSubmit={onSubmit} className="flex flex-col gap-8">
       <p className="text-sm text-muted">{t('requiredNote')}</p>
 
       {status === 'invalid' && errorIds.length > 0 && (
@@ -289,56 +260,35 @@ export function EnquiryForm({ kind, defaultMode }: Props) {
         <input id={`${uid}-website`} type="text" name="website" tabIndex={-1} autoComplete="off" defaultValue="" />
       </div>
 
-      <div className="flex flex-col gap-1.5">
-        <label className="flex items-start gap-3 text-sm leading-relaxed text-ink">
-          <input
-            id={id('consent')}
-            type="checkbox"
-            checked={values.consent}
-            onChange={(e) => update('consent', e.target.checked)}
-            aria-invalid={errors.consent ? true : undefined}
-            aria-describedby={errors.consent ? `${id('consent')}-error` : undefined}
-            className="mt-0.5 size-5 shrink-0 accent-navy-700"
-          />
-          <span>
-            {t.rich('fields.consent', {
-              privacy: (chunks) => (
-                <Link href="/privacy" className="font-semibold text-navy-700 underline underline-offset-2">
-                  {chunks}
-                </Link>
-              ),
-            })}
-            <span className="text-red-700" aria-hidden> *</span>
-          </span>
-        </label>
-        {errors.consent && (
-          <p id={`${id('consent')}-error`} className="flex items-center gap-1.5 text-sm text-red-700">
-            <AlertTriangle className="size-4 shrink-0" aria-hidden />
-            {t('errors.consent')}
-          </p>
-        )}
-      </div>
+      <p className="flex items-center gap-2 text-sm text-muted">
+        <ShieldCheck className="size-4 shrink-0 text-navy-700" aria-hidden />
+        {t('privacyNote')}
+      </p>
 
-      {status === 'not_configured' &&
-        statusBox('warn', t('status.notConfiguredTitle'), t('status.notConfiguredText', { email: company.emails[0], phone: company.phones[0].display }))}
-      {status === 'error' && statusBox('error', t('status.errorTitle'), t('status.errorText'))}
-      {status === 'rate_limited' && statusBox('error', t('status.errorTitle'), t('status.rateLimitedText'))}
+      {status === 'mail' && (
+        <div ref={statusRef} tabIndex={-1} role="status" className="flex gap-3 rounded-xl border border-emerald-200 bg-emerald-50 p-4 outline-none">
+          <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-emerald-700" aria-hidden />
+          <div>
+            <p className="font-semibold text-navy-900">{t('status.mailOpenedTitle')}</p>
+            <p className="mt-1 text-sm text-ink">{t('status.mailOpenedText', { email: company.emails[0] })}</p>
+            <div className="mt-3 flex flex-wrap gap-3">
+              <a href={buildMailto()} className="btn btn-gold">
+                {t('status.openMailAgain')}
+                <Send className="size-4 rtl:-scale-x-100" aria-hidden />
+              </a>
+              <button type="button" className="btn btn-outline" onClick={() => setStatus('idle')}>
+                {t('status.backToForm')}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       <div>
-        <button type="submit" className="btn btn-gold w-full sm:w-auto sm:min-w-56" disabled={status === 'submitting'}>
-          {status === 'submitting' ? (
-            <>
-              <Loader2 className="size-4 animate-spin" aria-hidden />
-              {t('submitting')}
-            </>
-          ) : (
-            <>
-              {kind === 'quote' ? t('submitQuote') : t('submit')}
-              <Send className="size-4 rtl:-scale-x-100" aria-hidden />
-            </>
-          )}
+        <button type="submit" className="btn btn-gold w-full sm:w-auto sm:min-w-56">
+          {kind === 'quote' ? t('submitQuote') : t('submit')}
+          <Send className="size-4 rtl:-scale-x-100" aria-hidden />
         </button>
-        <p className="sr-only" aria-live="polite">{status === 'submitting' ? t('submitting') : ''}</p>
       </div>
     </form>
   );

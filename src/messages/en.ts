@@ -517,7 +517,7 @@ const en = {
   contact: {
     metaTitle: 'Contact Us',
     metaDescription:
-      'Contact Sengol Global Logistics Pvt. Ltd. in Ghaziabad, Uttar Pradesh. Call +91 8448336307 or email network@sengolgroup.com for freight and logistics enquiries.',
+      'Contact Sengol Global Logistics Pvt. Ltd. in Ghaziabad, Uttar Pradesh. Call +91 9540603266 or email bdm@sengolgroup.com for freight and logistics enquiries.',
     hero: {
       eyebrow: 'Contact',
       title: 'Let’s talk about your cargo',
@@ -548,6 +548,7 @@ const en = {
     required: 'Required',
     optional: 'Optional',
     requiredNote: 'Fields marked * are required.',
+    privacyNote: 'Don’t worry your data is completely safe with us.',
     sections: {
       contact: 'Your details',
       shipment: 'Shipment',
@@ -601,6 +602,10 @@ const en = {
       successTitle: 'Thank you — your enquiry has been sent.',
       successText: 'Our team will review your details and get back to you by email or phone.',
       sendAnother: 'Send another enquiry',
+      mailOpenedTitle: 'Almost done — your email app has opened.',
+      mailOpenedText: 'Your enquiry has been prepared in your email app with all your details, addressed to us. Just press Send there to deliver it. If your email app did not open, use the button below or write to us directly at {email}.',
+      openMailAgain: 'Open email app again',
+      backToForm: 'Back to the form',
       notConfiguredTitle: 'Online submission is not available yet.',
       notConfiguredText: 'Your enquiry has NOT been sent. Please email us at {email} or call {phone} instead. Your entries are still in the form.',
       errorTitle: 'We could not send your enquiry.',
@@ -622,8 +627,8 @@ const en = {
         { heading: 'How we use it', body: 'We use this information only to respond to your enquiry, prepare quotations and communicate with you about the services you requested.' },
         { heading: 'Cookies and storage', body: 'The website uses a single functional cookie to remember the language you select. We do not use advertising cookies. Form entries are not stored in your browser.' },
         { heading: 'Sharing', body: 'We may share shipment details with logistics partners where necessary to prepare a quotation or perform services you request. We do not sell personal information.' },
-        { heading: 'Retention and your rights', body: 'We keep enquiry information only as long as needed for the purposes above or as required by law. You may request access to, correction of or deletion of your information by emailing network@sengolgroup.com.' },
-        { heading: 'Contact', body: 'For privacy questions, contact network@sengolgroup.com or +91 8448336307.' },
+        { heading: 'Retention and your rights', body: 'We keep enquiry information only as long as needed for the purposes above or as required by law. You may request access to, correction of or deletion of your information by emailing bdm@sengolgroup.com.' },
+        { heading: 'Contact', body: 'For privacy questions, contact bdm@sengolgroup.com or +91 9540603266.' },
       ],
     },
     terms: {

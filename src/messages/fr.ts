@@ -519,7 +519,7 @@ const fr: Messages = {
   contact: {
     metaTitle: 'Contact',
     metaDescription:
-      'Contactez Sengol Global Logistics Pvt. Ltd. à Ghaziabad, Uttar Pradesh. Appelez le +91 8448336307 ou écrivez à network@sengolgroup.com pour vos demandes fret et logistique.',
+      'Contactez Sengol Global Logistics Pvt. Ltd. à Ghaziabad, Uttar Pradesh. Appelez le +91 9540603266 ou écrivez à bdm@sengolgroup.com pour vos demandes fret et logistique.',
     hero: {
       eyebrow: 'Contact',
       title: 'Parlons de votre marchandise',
@@ -550,6 +550,7 @@ const fr: Messages = {
     required: 'Obligatoire',
     optional: 'facultatif',
     requiredNote: 'Les champs marqués * sont obligatoires.',
+    privacyNote: 'Ne vous inquiétez pas : vos données sont en totale sécurité avec nous.',
     sections: {
       contact: 'Vos coordonnées',
       shipment: 'Envoi',
@@ -603,6 +604,10 @@ const fr: Messages = {
       successTitle: 'Merci, votre demande a bien été envoyée.',
       successText: 'Notre équipe va étudier vos informations et vous recontactera par e-mail ou par téléphone.',
       sendAnother: 'Envoyer une autre demande',
+      mailOpenedTitle: 'Presque terminé — votre application e-mail s’est ouverte.',
+      mailOpenedText: 'Votre demande a été préparée dans votre application e-mail avec toutes vos informations. Il ne vous reste qu’à cliquer sur Envoyer. Si l’application ne s’est pas ouverte, utilisez le bouton ci-dessous ou écrivez-nous directement à {email}.',
+      openMailAgain: 'Rouvrir l’application e-mail',
+      backToForm: 'Retour au formulaire',
       notConfiguredTitle: 'L’envoi en ligne n’est pas encore disponible.',
       notConfiguredText: 'Votre demande n’a PAS été envoyée. Écrivez-nous plutôt à {email} ou appelez le {phone}. Vos saisies sont conservées dans le formulaire.',
       errorTitle: 'Nous n’avons pas pu envoyer votre demande.',
@@ -624,8 +629,8 @@ const fr: Messages = {
         { heading: 'Utilisation', body: 'Nous utilisons ces informations uniquement pour répondre à votre demande, établir des devis et échanger avec vous au sujet des services demandés.' },
         { heading: 'Cookies et stockage', body: 'Le site utilise un seul cookie fonctionnel pour mémoriser la langue choisie. Nous n’utilisons pas de cookies publicitaires. Les saisies de formulaire ne sont pas stockées dans votre navigateur.' },
         { heading: 'Partage', body: 'Nous pouvons partager les détails d’un envoi avec des partenaires logistiques lorsque cela est nécessaire pour établir un devis ou réaliser les services demandés. Nous ne vendons pas de données personnelles.' },
-        { heading: 'Conservation et droits', body: 'Nous conservons les informations de demande uniquement le temps nécessaire aux finalités ci-dessus ou exigé par la loi. Vous pouvez demander l’accès, la rectification ou la suppression de vos données en écrivant à network@sengolgroup.com.' },
-        { heading: 'Contact', body: 'Pour toute question relative à la confidentialité, contactez network@sengolgroup.com ou le +91 8448336307.' },
+        { heading: 'Conservation et droits', body: 'Nous conservons les informations de demande uniquement le temps nécessaire aux finalités ci-dessus ou exigé par la loi. Vous pouvez demander l’accès, la rectification ou la suppression de vos données en écrivant à bdm@sengolgroup.com.' },
+        { heading: 'Contact', body: 'Pour toute question relative à la confidentialité, contactez bdm@sengolgroup.com ou le +91 9540603266.' },
       ],
     },
     terms: {

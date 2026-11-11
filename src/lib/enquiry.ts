@@ -62,8 +62,8 @@ export const limits: Record<Exclude<EnquiryField, 'consent'>, number> = {
 };
 
 export const requiredFields: Record<EnquiryKind, EnquiryField[]> = {
-  contact: ['name', 'email', 'message', 'consent'],
-  quote: ['name', 'email', 'phoneCode', 'phone','direction', 'origin', 'destination', 'mode', 'cargo', 'consent'],
+  contact: ['name', 'email', 'message'],
+  quote: ['name', 'email', 'phoneCode', 'phone', 'direction', 'origin', 'destination', 'mode', 'cargo'],
 };
 
 const EMAIL = /^[^\s@<>()[\]\\,;:"]+@[^\s@<>()[\]\\,;:"]+\.[^\s@<>()[\]\\,;:"]{2,}$/;

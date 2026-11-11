@@ -4,10 +4,10 @@ export const company = {
   website: 'https://www.sengolgroup.com',
   websiteLabel: 'www.sengolgroup.com',
   phones: [
-    { display: '+91 8448336307', href: 'tel:+918448336307' },
     { display: '+91 9540603266', href: 'tel:+919540603266' },
+    { display: '+91 8448336307', href: 'tel:+918448336307' },
   ],
-  emails: ['network@sengolgroup.com', 'bdm@sengolgroup.com'],
+  emails: ['bdm@sengolgroup.com', 'network@sengolgroup.com'],
   address: {
     street: '4F-CS-27, 4th Floor, Ansal Plaza Mall, Vaishali, Sector 1',
     locality: 'Ghaziabad',

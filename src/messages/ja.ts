@@ -519,7 +519,7 @@ const ja: Messages = {
   contact: {
     metaTitle: 'お問い合わせ',
     metaDescription:
-      'ウッタル・プラデーシュ州ガーズィヤーバードの Sengol Global Logistics Pvt. Ltd. へのお問い合わせ。輸送・物流のご相談は +91 8448336307 または network@sengolgroup.com まで。',
+      'ウッタル・プラデーシュ州ガーズィヤーバードの Sengol Global Logistics Pvt. Ltd. へのお問い合わせ。輸送・物流のご相談は +91 9540603266 または bdm@sengolgroup.com まで。',
     hero: {
       eyebrow: 'お問い合わせ',
       title: '貨物についてご相談ください',
@@ -550,6 +550,7 @@ const ja: Messages = {
     required: '必須',
     optional: '任意',
     requiredNote: '* は必須項目です。',
+    privacyNote: 'ご安心ください。お客様のデータは当社が安全に守ります。',
     sections: {
       contact: 'お客様情報',
       shipment: '輸送内容',
@@ -603,6 +604,10 @@ const ja: Messages = {
       successTitle: 'ありがとうございます。お問い合わせを送信しました。',
       successText: '担当チームが内容を確認し、メールまたはお電話でご連絡いたします。',
       sendAnother: '別のお問い合わせを送信',
+      mailOpenedTitle: 'あと一歩です — メールアプリが開きました。',
+      mailOpenedText: 'ご入力内容がすべて記載されたメールがメールアプリに作成されました。あとはそちらで「送信」を押すだけです。アプリが開かない場合は、下のボタンを使うか {email} まで直接ご連絡ください。',
+      openMailAgain: 'メールアプリをもう一度開く',
+      backToForm: 'フォームに戻る',
       notConfiguredTitle: 'オンライン送信はまだご利用いただけません。',
       notConfiguredText: 'お問い合わせは送信されていません。{email} 宛てにメールをお送りいただくか、{phone} までお電話ください。入力内容はフォームに残っています。',
       errorTitle: 'お問い合わせを送信できませんでした。',
@@ -624,8 +629,8 @@ const ja: Messages = {
         { heading: '利用目的', body: 'これらの情報は、お問い合わせへの回答、見積もりの作成、ご依頼のサービスに関するご連絡のためにのみ利用します。' },
         { heading: 'Cookie と保存', body: '本ウェブサイトでは、選択された言語を記憶するための機能 Cookie を1つだけ使用しています。広告用 Cookie は使用していません。フォームの入力内容はブラウザに保存されません。' },
         { heading: '第三者への提供', body: '見積もりの作成やご依頼のサービスの実施に必要な場合、貨物情報を物流パートナーと共有することがあります。個人情報を販売することはありません。' },
-        { heading: '保存期間とお客様の権利', body: 'お問い合わせ情報は、上記の目的に必要な期間または法令で定められた期間のみ保存します。network@sengolgroup.com までメールをお送りいただくことで、情報の開示、訂正、削除を請求できます。' },
-        { heading: 'お問い合わせ先', body: 'プライバシーに関するお問い合わせは network@sengolgroup.com または +91 8448336307 までご連絡ください。' },
+        { heading: '保存期間とお客様の権利', body: 'お問い合わせ情報は、上記の目的に必要な期間または法令で定められた期間のみ保存します。bdm@sengolgroup.com までメールをお送りいただくことで、情報の開示、訂正、削除を請求できます。' },
+        { heading: 'お問い合わせ先', body: 'プライバシーに関するお問い合わせは bdm@sengolgroup.com または +91 9540603266 までご連絡ください。' },
       ],
     },
     terms: {
