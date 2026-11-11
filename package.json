@@ -5,7 +5,7 @@
   "description": "Multilingual corporate website for Sengol Global Logistics Pvt. Ltd.",
   "scripts": {
     "dev": "next dev",
-    "build": "opennextjs-cloudflare build",
+    "build": "opennextjs-cloudflare build --dangerouslyUseUnsupportedNextVersion",
     "build:next": "next build",
     "start": "next start",
     "lint": "eslint src",
